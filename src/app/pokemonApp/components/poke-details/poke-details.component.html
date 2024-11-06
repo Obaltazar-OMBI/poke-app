@@ -1,0 +1,44 @@
+<div
+  *ngIf="pokemonDetails"
+  class="card border-5 border border-danger rounded-5 col-lg-9 mx-auto ml-md-5"
+  style="margin: 20px;"
+>
+  <img
+    [src]="pokemonDetails.pic!"
+    [alt]="pokemonDetails.name"
+    class="w-[30px] mx-5"
+  />
+  <div class="card-body">
+    <p class="card-title text-center fs-4">
+      {{ pokemonDetails.name | uppercase }}
+    </p>
+  </div>
+  <ul class="list-group border-0">
+    <li class="list-group-item fs-4 text-center">
+      #{{ pokemonDetails.order }}
+    </li>
+    <li class="list-group-item fs-6">
+      Experiencia: {{ pokemonDetails.base_experience }}
+    </li>
+    <li class="list-group-item fs-6">Peso: {{ pokemonDetails.weight }} kg</li>
+    <li class="list-group-item fs-6">Altura: {{ pokemonDetails.height }} ft</li>
+  </ul>
+  <p class="text-center fs-6 my-2">TIPO POKEMON</p>
+  <ul class="list-group list-group-horizontal border-0">
+    <li class="list-group-item list-group-item-warning mx-3 " *ngFor="let type of pokemonDetails.types">
+      {{ type.type.name | uppercase }}
+    </li>
+  </ul>
+  <div class="card-body text-center">
+    <button
+      (click)="chooseFavorite()"
+      [disabled]="isAddFavoriteDisabled && !favoriteRemoved"
+      [ngClass]="{ disabled: isAddFavoriteDisabled && !favoriteRemoved }"
+      class="btn btn-outline-danger rounded-pill"
+    >
+      {{
+        isFavorite ? "Ya tienes un pokemon seleccionado" : "Agregar a Favorito"
+      }}
+    </button>
+  </div>
+</div>
